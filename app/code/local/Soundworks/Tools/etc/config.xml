@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Soundworks_Tools>
+            <version>1.0</version>
+        </Soundworks_Tools>
+    </modules>
+    <global>
+        <models>
+            <tools>
+                <class>Soundworks_Tools_Model</class>
+            </tools>
+        </models>
+        <helpers>
+            <tools>
+                <class>Soundworks_Tools_Helper</class>
+            </tools>
+        </helpers>
+    </global>
+</config>

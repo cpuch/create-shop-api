@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <tools_soundworks module="tools" translate="title">
+                <title>Soundworks API</title>
+                <model>tools/soundworks_api</model>
+                <acl>tools/soundworks</acl>
+                <methods>
+                    <createShop module="tools" translate="title">
+                        <title>createShop</title>
+                        <acl>tools/soundworks/createShop</acl>
+                    </createShop>
+                </methods>
+            </tools_soundworks>
+        </resources>
+        <resources_alias>
+            <soundworks>tools_soundworks</soundworks>
+        </resources_alias>
+        <v2>
+            <resources_function_prefix>
+                <soundworks>soundworks</soundworks>
+            </resources_function_prefix>
+        </v2>
+        <acl>
+            <resources>
+                <soundworks module="tools" translate="title">
+                    <title>Sounworks - API</title>
+                    <sort_order>5</sort_order>
+                    <createShop module="tools" translate="title">
+                        <title>Create Shop</title>
+                    </createShop>
+                </soundworks>
+            </resources>
+        </acl>
+    </api>
+</config>

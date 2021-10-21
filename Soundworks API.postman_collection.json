@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "341383d1-b7e6-47c2-bdda-2c746fbc44f4",
+		"name": "Soundworks API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonObject = xml2Json(responseBody);\r",
+							"var result = jsonObject['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:loginResponseParam'].result;\r",
+							"pm.environment.set(\"sessionId\", result);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:Magento\">\r\n    <soapenv:Header/>\r\n    <soapenv:Body>\r\n        <urn:loginParam>\r\n            <username>{{apiUsername}}</username>\r\n            <apiKey>{{apiKey}}</apiKey>\r\n        </urn:loginParam>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiUrl}}/index/login",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"index",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Shop",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonObject = xml2Json(responseBody);\r",
+							"var result = jsonObject['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns1:soundworksCreateShopResponseParam'].result;\r",
+							"pm.environment.set(\"websiteId\", result.websiteId);\r",
+							"pm.environment.set(\"storeGroupId\", result.storeGroupId);\r",
+							"pm.environment.set(\"storeId\", result.storeId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:Magento\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <urn:soundworksCreateShopRequestParam>\r\n         <sessionId>{{sessionId}}</sessionId>\r\n         <params>\r\n            <websiteName>{{websiteName}}</websiteName>\r\n            <websiteCode>{{websiteCode}}</websiteCode>\r\n            <storeGroupName>{{storeGroupName}}</storeGroupName>\r\n            <rootCategoryId>{{rootCategoryId}}</rootCategoryId>\r\n            <storeName>{{storeName}}</storeName>\r\n            <storeCode>{{storeCode}}</storeCode>\r\n         </params>\r\n      </urn:soundworksCreateShopRequestParam>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{apiUrl}}/index/createShop",
+					"host": [
+						"{{apiUrl}}"
+					],
+					"path": [
+						"index",
+						"createShop"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
